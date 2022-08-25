@@ -8,7 +8,7 @@ class BirdsController < ApplicationController
 
   # POST /birds
   def create
-    bird = Bird.create(name: params[:name], species: params[:species])
+    bird = Bird.create(birds_param)
     render json: bird, status: :created
   end
 
@@ -22,4 +22,9 @@ class BirdsController < ApplicationController
     end
   end
 
+  private
+
+  def birds_param
+    params.permit(:name, :species)
+  end
 end
